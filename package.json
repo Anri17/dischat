@@ -1,0 +1,30 @@
+{
+  "name": "live-chat-app",
+  "version": "0.1.0",
+  "description": "A live chat app where a user can register and login, to send messages that updates live and everyone can see.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anri17/live-chat-app.git"
+  },
+  "keywords": [
+    "live",
+    "chat",
+    "app",
+    "application",
+    "messaging"
+  ],
+  "author": "Andre \"Anri17\" Almeida",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anri17/live-chat-app/issues"
+  },
+  "homepage": "https://github.com/Anri17/live-chat-app#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
+  }
+}
