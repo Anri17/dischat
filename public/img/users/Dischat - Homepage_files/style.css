@@ -86,9 +86,6 @@ p {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-    margin: 0 0.5rem;
     padding: 0.5rem;
     background-color: #16161f;
 }
@@ -102,13 +99,8 @@ p {
     flex-direction: row;
 }
 
-.header-user button{
-    align-self: center;
-}
-
 /* Chat */
 .chat-main {
-    height: 740px;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -120,7 +112,6 @@ p {
 }
 
 .chat-messages {
-    overflow: auto;
     background-color: #16161f;
     margin-bottom: 0.5rem;
 }
@@ -170,8 +161,8 @@ p {
 
 .message-left img {
     border-radius: 100%;
-    width: 40px;
-    height: 40px; 
+    width: 46px;
+    height: 46px; 
 }
 
 .message-right {
@@ -187,15 +178,17 @@ p {
     margin-bottom: 0.5rem;
 }
 
-.message-username { 
+.message-username {
+    color: red;
     align-self: flex-end;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 500;
     margin-right: 0.5rem;
 }
 
 .message-time {
     align-self: flex-end;
+    margin-bottom: 2px;
     color: #9e9e9e;
 }
 
@@ -204,10 +197,9 @@ p {
     line-height: 1.25rem;
 }
 
+
 /* User */
 .user-list {
-    height: 740px;
-    overflow: auto;
     background-color: #16161f;
     padding: 0.5rem;
     margin: 0.5rem;
@@ -223,10 +215,9 @@ p {
 }
 
 .user img {
-    margin: auto 0;
     border-radius: 100%;
-    width: 40px;
-    height: 40px; 
+    width: 46px;
+    height: 46px; 
 }
 
 .user span {
@@ -241,10 +232,10 @@ p {
 /* Footer */
 .footer-container {
     background-color: #16161f;
-    margin: 0 0.5rem;
+    margin: 0.5rem;
+    margin-top: 0; 
     padding: 0.5rem;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
+    border-radius: 0.5rem;
     text-align: center;
     font-size: 1rem;
     color: #fff;
