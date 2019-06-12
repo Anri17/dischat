@@ -14,17 +14,18 @@
         </h1>
     </header>
     <section class="alert-container">
-        <!--div class="alert-box">
+        <div style="display: none" id="alert" class="alert-box">
             alert message alert message alert message alert message
-        </div-->
+        </div>
     </section>
     <main class="homepage-box">
         <h3>Login</h3>
-        <form class="homepage-form" action="/login-user">
+        <form class="homepage-form" action="/login-user" method="POST">
             <input type="email" name="email" placeholder=E-mail>
             <input type="password" name="password" placeholder="Password">
             <button class="btn" type="submit">Login</button>
         </form>
     </main>
+    <script src="js/alert.js"></script>
 </body>
 </html>

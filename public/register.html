@@ -14,19 +14,20 @@
         </h1>
     </header>
     <section class="alert-container">
-        <!--div class="alert-box">
-            alert message alert message alert message alert message
-        </div-->
+        <div style="display: none" id="alert" class="alert-box">
+            
+        </div>
     </section>
     <main class="homepage-box">
         <h3>Register</h3>
-        <form class="homepage-form" action="/register-user">
+        <form class="homepage-form" action="/register-user" method="POST">
             <input type="text" name="username" placeholder="Username">
             <input type="email" name="email" placeholder=E-mail>
             <input type="password" name="password" placeholder="Password">
-            <input type="password" name="re-password" placeholder="Confirm Password">
+            <input type="password" name="re_password" placeholder="Confirm Password">
             <button class="btn" type="submit">Register</button>
         </form>
     </main>
+    <script src="js/alert.js"></script>
 </body>
 </html>

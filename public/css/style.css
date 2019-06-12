@@ -253,7 +253,13 @@ p {
 
 /* Utility */
 .alert-container {
-    margin-top: 2rem;
+    left: 0;
+    right: 0;
+    position: absolute;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-top: 4.5rem;
     text-align: center;
 }
 
@@ -264,7 +270,7 @@ p {
     font-size: 1.5rem;
     text-decoration: none;
     width: 300px;
-    height: 2rem;
+    height: auto;
     padding: 1rem;
     border-radius: 4px;
     text-align: center;
@@ -290,8 +296,7 @@ p {
 }
 
 .alert-box {
-    display: inline-block;
-    margin: 0 auto;
+    display: flex;
     border-radius: 0.5rem;
     padding: 1rem;
     background-color: rgb(165, 33, 33);
