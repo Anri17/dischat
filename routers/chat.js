@@ -1,8 +1,6 @@
-const express = require('express');
+const express = require('express'); 
 const router = express.Router();
-const io = require('socket.io')(5000);
-
-const loginData = require('./login.js').userData;
+const io = require('socket.io')(4000);
 
 const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -14,8 +12,6 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 const User = require('./../models/user.js').User;
-
-
 
 let users = {}
 

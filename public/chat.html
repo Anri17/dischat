@@ -6,33 +6,41 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
     <title>Dischat - chat</title>
+    <script>
+        if (localStorage.token == null || localStorage.token == undefined || localStorage.token == '') {
+            window.location.replace('/');
+        }
+    </script>
+    <script src="js/userdata.js" defer></script>
 </head>
 <body>
     <header class="header-container">
         <h1 class="header-logo">
-            <img src="img/logo.png" alt="logo dischat">
+            <a href="/">
+                <img src="img/logo.png" alt="Dischat logo">
+            </a>
         </h1>
         <div class="header-user">
             <div class="user">
                 <img src="img/users/profile-pic.png" alt="user image">
-                <span>User</span>
+                <span id="header_this_user">User</span>
             </div>
-            <button class="btn btn-sm">Logout</button>
+            <button id="logout_button"class="btn btn-sm">Logout</button>
         </div>
     </header>
     <main class="main-container">
-        <aside class="user-list">
+        <aside id="user_list" class="user-list">
+            <!-- Users Go Here -->
+            <!-- Template
             <div class="user">
                 <img src="img/users/profile-pic.png" alt="user image">
                 <span>User</span>
             </div>
-            <div class="user">
-                <img src="img/users/profile-pic.png" alt="user image">
-                <span>User</span>
-            </div>
+            -->
         </aside>
         <section class="chat-main">
             <div class="chat-messages">
+                <!-- Chat Messages Go Here -->
                 <div class="message">
                     <div class="message-left">
                         <img src="img/users/profile-pic.png" alt="user image">
@@ -68,7 +76,6 @@
     <footer class="footer-container">
         &copy; Este chato
     </footer>
-    <script src="http://localhost:5000/socket.io/socket.io.js"></script>
     <script src="js/chat.js"></script>
 </body>
 </html>

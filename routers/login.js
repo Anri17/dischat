@@ -1,31 +1,39 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/dischat', {useNewUrlParser: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 const User = require('./../models/user.js').User;
 
-let userData;
-
 // Login user
 router.post('/login-user', (req, res) => {
-    return getUserData(req.body.email, (err, doc) => {
+    console.log(req.body);
+    if (req.body.email == '') return res.json('empty email');
+    if (req.body.password == '') return res.json('empty password');
+    return getUserData(req.body.email, (err, doc, userExists) => {
         if (err) return res.json(err.message);
+        if (!userExists) return res.json('no user');
         bcrypt.compare(req.body.password, doc.password, (err, passwordIsEqual) => {
-            if (err) return res.send(err);
+            console.log(doc);
+            if (err) return res.render(err);
+            if (!passwordIsEqual) return res.json('wrong password');
             if (passwordIsEqual) {
-                userData = JSON.stringify(doc);
-                return res.redirect('/chat');
-            }
-            if (!passwordIsEqual) return res.send("password is not correct");
+                let token = jwt.sign({
+                    _id: doc._id,
+                }, 'aHKrColYbxT1Dg5mbtv42KKVU5lju6t0TopW8-E3Q-0');
+                res.json({
+                    token: token
+                });
+            };
         });
     });
 });
@@ -34,12 +42,11 @@ router.post('/login-user', (req, res) => {
 function getUserData(email, callback) {
     return User.findOne({ email: email }, (err, doc) => {
         if (err) return callback(err);
-        if (!doc) return callback(new Error('User not found!'));
-        return callback(null, doc);
+        if (!doc) return callback(null, null, false);
+        return callback(null, doc, true);
     });
 }
 
 module.exports = {
     router,
-    userData
 }

@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/dischat', {useNewUrlParser: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -15,21 +15,21 @@ const User = require('./../models/user.js').User;
 
 // Register new User
 router.post('/register-user', (req, res) => {
-    console.log(req);
-    if (req.body.password == '') return res.send('Password field is empty');
-    if (req.body.password != req.body.re_password) return res.send('Password fields are not equal');
-
+    if (req.body.username == '') return res.json('no username');
+    if (req.body.email == '') return res.json('no email');
+    if (req.body.password == '') return res.json('no password');
+    if (req.body.password != req.body.re_password) return res.json('password not equal');
     let newUser = new User({ username: req.body.username, email: req.body.email, password: undefined });
     return getEncriptedPassword(req.body.password, (err, hash) => {
-        if (err) res.send(err);
+        if (err) res.json(err);
         newUser.password = hash;
         return getDatabaseDuplicates(newUser, (err, existingUser) => {
             if (err) return res.json(err.message);
-            if (newUser.email == existingUser.email) return res.push('Email already in use');
-            if (newUser.username == existingUser.username) return res.send('Username already in use');
+            if (newUser.email == existingUser.email) return res.json('email exists');
+            if (newUser.username == existingUser.username) return res.json('username exists');
             return insertUserIntoDatabase(newUser, (err) => {
                 if (err) return res.json(err.message);
-                return res.send('New Register');
+                return res.json('success');
             });
         });
     });

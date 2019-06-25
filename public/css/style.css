@@ -36,7 +36,7 @@ p {
     text-align: center;
     flex-direction: column;
     justify-content: center;
-    margin: 10% auto;
+    margin: 20px auto;
     padding: 2rem;
     border-radius: 0.5rem;
     height: 300px;
@@ -47,6 +47,14 @@ p {
 .homepage-box h3 {
     font-size: 2rem;
     color: #fff;
+}
+
+.homepage-box-header {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: space-between;
+    width: 96%;
 }
 
 .homepage-links {
@@ -112,7 +120,7 @@ p {
     display: flex;
     flex-direction: column;
     align-content: center;
-    justify-content: center;
+    justify-content: flex-end;
     background: #16161f;
     margin: 0.5rem;
     border-radius: 0.5rem;
@@ -213,7 +221,7 @@ p {
     margin: 0.5rem;
     margin-right: 0;
     border-radius: 0.5rem;
-    width: 100%;
+    min-width: 200px;
 }
 
 .user {
@@ -252,15 +260,17 @@ p {
 
 
 /* Utility */
+.link-icon {
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 600;
+}
+
 .alert-container {
-    left: 0;
-    right: 0;
-    position: absolute;
     display: flex;
     align-content: center;
     justify-content: center;
     margin-top: 4.5rem;
-    text-align: center;
 }
 
 .btn {
@@ -297,8 +307,10 @@ p {
 
 .alert-box {
     display: flex;
-    border-radius: 0.5rem;
+    align-self: center;
+    justify-self: center;
+    border-radius: 0.2rem;
     padding: 1rem;
-    background-color: rgb(165, 33, 33);
+    background-color: rgb(216, 25, 25);
     color: #eee;
 }
