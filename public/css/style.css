@@ -117,6 +117,7 @@ p {
 /* Chat */
 .chat-main {
     height: 740px;
+    width: 100%;    
     display: flex;
     flex-direction: column;
     align-content: center;

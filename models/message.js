@@ -3,16 +3,15 @@ const mongoose = require('mongoose');
 const messageSchema = new mongoose.Schema({
     userid: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     date: {
-        type: String,
-        required: true,
+        type: Date,
+        required: true
     },
     message: {
         type : String,
-        required: true,
+        required: true
     }
 });
 

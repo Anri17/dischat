@@ -19,7 +19,7 @@ function registerUser(e) {
 function submitData(username, email, password, re_password) {
     let data = {
         username: username,
-        email: email,
+        email: email.toLowerCase(),
         password: password,
         re_password: re_password
     };

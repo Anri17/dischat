@@ -8,7 +8,7 @@ window.onload = verifyToken();
 console.log(localStorage.token);
 
 function verifyToken() {
-    fetchUserData(localStorage.token, (userData) => {
+    fetchThisUserData(localStorage.token, (userData) => {
         header_this_user.innerHTML = userData.username;
         fetchAllUserData((allUserData) => {
             allUserData.forEach(element => {
@@ -23,8 +23,8 @@ function logout() {
     location.replace('/login');
 }
 
-function fetchUserData(token, callback) {
-    fetch('/userdata', {
+function fetchThisUserData(token, callback) {
+    fetch('/thisuserdata', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

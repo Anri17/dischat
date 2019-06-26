@@ -14,7 +14,7 @@ function loginUser(e) {
 
 function submitData(email, password) {
     let data = {
-        email: email,
+        email: email.toLowerCase(),
         password: password
     };
 
