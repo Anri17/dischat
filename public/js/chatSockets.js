@@ -1,85 +1,78 @@
-window.onload = fetchChatMessages((messages) => {
-    let sortedMessages = messages.sort((a, b) => {
-        a = new Date(a.date);
-        b = new Date(b.date);
-        return a<b ? -1 : a>b ? 1 : 0;
-    });
+const socket = io.connect('http://localhost:5000');
+const submitForm = document.getElementById('message_submition_form');
+console.log(localStorage.token)
+// Login Handling
 
-    console.log(sortedMessages);
-
-    getMessage(sortedMessages, (element) => {
-        fetchUserData(element.userid, (userData) => {
-            createMessageStructure(userData.username, element.message, new Date(element.date));
-        });
-        scrollToBottom('chat_messages');
-    });
+fetchThisUserData(localStorage.token, (response) => {
+    displayLoginStatus(response._id);
 });
 
-document.getElementById('message_submition_form').addEventListener('submit', submitMessage);
-function submitMessage(e) {
+socket.emit('newUserLogin', localStorage.token);
+
+socket.on('newUserLoginAnouncement', (userId) => {
+    displayLoginStatus(userId);
+});
+
+// Message Handling
+submitForm.addEventListener('submit', (e) => {
     e.preventDefault();
     let token = localStorage.token;
     let date = new Date();
     let message = document.getElementById('message_submition_form').elements.namedItem('text-message').value;
-    document.getElementById('message_submition_form').elements.namedItem('text-message').value = '';
 
-    fetch('/chat-submit-message', {
+    socket.emit('submitChatMessage', token, date, message)
+    submitForm.elements.namedItem('text-message').value = '';
+    fetchThisUserData(token, (response) => {
+        createMessageStructure(response.username, message, date);
+    });
+});
+
+socket.on('receiveChatMessage', (username, date, message) => {
+    createMessageStructure(username, message, date);
+    console.log(message);
+});
+
+// Logout Handling
+socket.on('disconect', () => {
+    socket.emit('disconectParameters', localStorage.token);
+});
+
+socket.on('userDisconected', (disconectId) => {
+    displayOfflineStatus(disconectId);
+});
+
+// Functions
+function displayLoginStatus(id) {
+    let myId = 'user_sidecard_' + id;
+    console.log(myId);
+    let userSideCard = document.getElementById(myId);
+    console.log(userSideCard);
+    userSideCard.style.backgroundColor = 'green';
+    alert(id + ' connected');
+}
+
+function displayOfflineStatus(id) {
+    let myId = 'user_sidecard_' + id;
+    console.log(myId);
+    let userSideCard = document.getElementById(myId);
+    console.log(userSideCard);
+    userSideCard.style.backgroundColor = 'none';
+    alert(id + ' disconected');
+}
+
+function fetchThisUserData(token, callback) {
+    fetch('/thisuserdata', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            token: token,
-            date: date,
-            message: message
-        })
+        body: JSON.stringify({token})
     })
     .then(response => response.json())
     .then(response => {
-
+        callback(response);
     })
-}
-
-// TODO: Set up socket io
-socket.on('message', createMessageStructure("test", 'this message', 'time'));
-
-
-
-
-function scrollToBottom(id){
-    var div = document.getElementById(id);
-    console.log(div.scrollTop, div.scrollHeight);
-    div.scrollTop = div.scrollHeight - div.clientHeight;
-}
-
-function fetchChatMessages(callback) {
-    fetch('/chat-messages', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(response => callback(response));
-}
-
-function fetchUserData(id, callback) {
-    fetch('/userdata', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({id})
-    })
-    .then(response => response.json())
-    .then(response => callback(response));
-}
-
-async function getMessage(messages, callback) {
-    await messages.forEach(async element => await callback(element));
 }
 
 function createMessageStructure(username, message, date) {

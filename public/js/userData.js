@@ -14,8 +14,17 @@ function verifyToken() {
             allUserData.forEach(element => {
                 buildSidebarProfileCard(element._id, element.username);
             });
+            displayLoginStatus(userData._id);
         });
     });
+}
+
+function displayLoginStatus(id) {
+    let myId = 'user_sidecard_' + id;
+    console.log(myId);
+    let userSideCard = document.getElementById(myId);
+    console.log(userSideCard);
+    userSideCard.style.backgroundColor = 'green';
 }
 
 function logout() {
