@@ -110,6 +110,28 @@ p {
     flex-direction: row;
 }
 
+.header-this-user {
+    display: flex;
+    align-content: center;
+    margin: 1rem;
+}
+
+.header-this-user img {
+    margin: auto 0;
+    border-radius: 0.5rem;
+    width: 40px;
+    height: 40px;
+}
+
+.header-this-user span {
+    color: #fff;
+    display: flex;
+    align-self: center;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    font-size: 600;
+}
+
 .header-user button{
     align-self: center;
 }
@@ -178,7 +200,7 @@ p {
 }
 
 .message-left img {
-    border-radius: 100%;
+    border-radius: 0.5rem;
     width: 40px;
     height: 40px; 
 }
@@ -229,13 +251,15 @@ p {
     display: flex;
     align-content: center;
     margin: 1rem;
+    opacity: 0.4;
+    filter: alpha(opacity = 40);
 }
 
 .user img {
     margin: auto 0;
-    border-radius: 100%;
+    border-radius: 0.5rem;
     width: 40px;
-    height: 40px; 
+    height: 40px;
 }
 
 .user span {
@@ -258,7 +282,6 @@ p {
     font-size: 1rem;
     color: #fff;
 }
-
 
 /* Utility */
 .link-icon {

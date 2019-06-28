@@ -19,7 +19,10 @@ router.get('/chat-messages', (req, res) => {
     });
 });
 
-// db.collection('messages').insertOne(new Message({userid: '5d1235068e6b790b4c3a1c76', date: new Date(), message: 'Yet another message'});
+// Quick Reset Messages
+// Message.deleteMany({}, ()=> {
+//     console.log('Messages Reset');
+// });
 
 module.exports = {
     router

@@ -20,11 +20,11 @@
             </a>
         </h1>
         <div class="header-user">
-            <div class="user">
+            <div class="header-this-user">
                 <img src="img/users/profile-pic.png" alt="user image">
                 <span id="header_this_user">User</span>
             </div>
-            <button id="logout_button"class="btn btn-sm">Logout</button>
+            <button id="logout_button" class="btn btn-sm">Logout</button>
         </div>
     </header>
     <main class="main-container">
@@ -65,9 +65,10 @@
     <footer class="footer-container">
         &copy; Este chato
     </footer>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="js/chatMethods.js"></script>
     <script src="js/userData.js"></script>
     <script src="js/chatMessages.js"></script>
-    <script src="http://localhost:5000/socket.io/socket.io.js"></script>
-    <script src="js/chatSockets.js"></script>
+    <!--<script src="js/chatSockets.js"></script>-->
 </body>
 </html>

@@ -3,15 +3,13 @@ const app = express();
 const path = require('path');
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}!`);
-});
-
 const registerRouter = require('./routers/register.js').router;
 const loginRouter = require('./routers/login.js').router;
 const userDataRouter = require('./routers/userData.js').router;
 const chatMessagesRouter = require('./routers/chatMessages.js').router;
 const chatSocketsRouter = require('./routers/chatSockets.js').router;
+const chatIoServer = require('./routers/chatSockets.js').ioServer;
+
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use('/login', express.static(path.join(__dirname, 'public', 'login.html')));
@@ -23,3 +21,10 @@ app.use(loginRouter);
 app.use(userDataRouter);
 app.use(chatMessagesRouter);
 app.use(chatSocketsRouter);
+
+const server = app.listen(port, () => {
+    console.log(`Server running on port ${port}!`);
+});
+
+const io = require('socket.io')(server);
+chatIoServer(io);
