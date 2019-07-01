@@ -130,11 +130,18 @@ function logoutUser() {
     location.replace('/login');
 }
 
-function sortMessages(arr, callback) {
-    let sortedMessages = arr.sort((a, b) => {
+function sortArr(arr, callback) {
+    let sortedArr = arr.sort((a, b) => {
         a = new Date(a.date);
         b = new Date(b.date);
         return a<b ? -1 : a>b ? 1 : 0;
     });
-    return callback(sortedMessages);
+    return callback(sortedArr);
+}
+
+function timeout(callback, time) {
+    setTimeout(() => {
+        callback();
+        timeout(null, time);
+    }, time);
 }

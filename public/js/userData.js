@@ -11,3 +11,8 @@ window.onload = fetchThisUserData(localStorage.token, (userData) => {
         });
     });
 });
+
+var newScript = document.createElement('script');
+newScript.type = 'text/javascript';
+newScript.src = '/js/chatSockets.js';
+document.getElementsByTagName('body')[document.getElementsByTagName('body').length -1].appendChild(newScript);

@@ -20,9 +20,7 @@ router.get('/chat-messages', (req, res) => {
 });
 
 // Quick Reset Messages
-// Message.deleteMany({}, ()=> {
-//     console.log('Messages Reset');
-// });
+// Message.deleteMany({}, ()=> {console.log('Messages Reset');});
 
 module.exports = {
     router
