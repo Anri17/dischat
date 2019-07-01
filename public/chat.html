@@ -16,15 +16,21 @@
     <header class="header-container">
         <h1 class="header-logo">
             <a href="/">
-                <img src="img/logo.png" alt="Dischat logo">
+                <img src="images/logo.png" alt="Dischat logo">
             </a>
         </h1>
         <div class="header-user">
-            <div class="header-this-user">
-                <img src="img/users/profile-pic.png" alt="user image">
-                <span id="header_this_user">User</span>
+            <div id="header_user_profile" class="header-user-profile">
+                <img id="header_user_profile_image" src="images/users/profile/default.png" alt="user image">
+                <span id="header_user_profile_username">User</span>
             </div>
             <button id="logout_button" class="btn btn-sm">Logout</button>
+            <div style="display: none" id="user_profile" class="user-profile">
+                <form id="user_profile_image_upload_form" class="user-profile-image-upload-form">
+                    <input id="profile_image_file" type="file" name="image" accept="image/png, image/jpg">
+                    <input type="submit" value="upload">
+                </form>
+            </div>
         </div>
     </header>
     <main class="main-container">
@@ -68,7 +74,6 @@
     <script src="socket.io/socket.io.js"></script>
     <script src="js/chatMethods.js"></script>
     <script src="js/userData.js"></script>
-    <script src="js/chatMessages.js"></script>
     <!--<script src="js/chatSockets.js"></script>-->
 </body>
 </html>

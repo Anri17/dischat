@@ -1,5 +1,5 @@
 // DOM Manipulation
-function createMessageStructure(username, date, message) {
+function createMessageStructure(username, date, message, imageURL) {
     let messageBox = document.getElementById('chat_messages');
     let newDate = new Date(date);
     let messageCard = document.createElement('div');
@@ -9,7 +9,7 @@ function createMessageStructure(username, date, message) {
     messageLeft.classList.add('message-left');
     messageCard.appendChild(messageLeft);
     let profileImage = document.createElement('img');
-    profileImage.src = 'img/users/profile-pic.png';
+    profileImage.src = imageURL;
     profileImage.alt = 'user image';
     messageLeft.appendChild(profileImage);
 
@@ -38,21 +38,37 @@ function createMessageStructure(username, date, message) {
 
     messageUsername.innerHTML = username;
     messageTime.innerHTML = newDate.getHours() + ":" + newDate.getMinutes() + "   " + newDate.getDay() + "/" + newDate.getMonth() + "/" + newDate.getFullYear();
+    console.log('finished adding');
 }
 
-function buildSidebarProfileCard(id, username) {
+function buildSidebarProfileCard(id, username, imageURL) {
     let userList = document.getElementById('user_list');
     let userCard = document.createElement('div');
     userList.appendChild(userCard);
     userCard.id = 'user_sidecard_' + id;
     userCard.classList.add('user');
     let userImage = document.createElement('img');
-    userImage.src = 'img/users/profile-pic.png';
+    userImage.src = imageURL;
     userImage.art = 'Sidebar profile image of username: ' + username;
     let usernameField = document.createElement('span');
     usernameField.innerHTML = username;
     userCard.appendChild(userImage);
     userCard.appendChild(usernameField);
+}
+
+function generateMessages(messages, callback) {
+    let filteredMessages = []
+    messages.forEach(element => {
+        fetchUserData(element.userid, (data) => {
+            filteredMessages.push({
+                username: data.username,
+                date: element.date,
+                message: element.message,
+                image: data.image,
+            });
+        });
+    });
+    return callback(filteredMessages);
 }
 
 function scrollDivToBottom(id){ 
@@ -83,7 +99,7 @@ function fetchThisUserData(token, callback) {
     .then(response => response.json())
     .then(response => {
         callback(response);
-    })
+    });
 }
 
 function fetchAllUserData(callback) {
@@ -97,7 +113,7 @@ function fetchAllUserData(callback) {
     .then(response => response.json())
     .then(response => {
         callback(response);
-    })
+    });
 }
 
 function fetchUserData(id, callback) {
@@ -137,11 +153,4 @@ function sortArr(arr, callback) {
         return a<b ? -1 : a>b ? 1 : 0;
     });
     return callback(sortedArr);
-}
-
-function timeout(callback, time) {
-    setTimeout(() => {
-        callback();
-        timeout(null, time);
-    }, time);
 }

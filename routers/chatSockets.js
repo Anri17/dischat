@@ -29,18 +29,36 @@ function ioServer(io) {
                 }
                 connectedUsers[socket.id] = decoded._id;
                 io.sockets.emit('newUserLoginAnouncement', connectedUsers);
-                socket.emit('online');
-                console.log(connectedUsers);
+                Message.find((err, messages) => {
+                    if (err) return console.log(err);
+                    let messagesArray = [];
+                    messages.forEach(element => {
+                        console.log(element);
+                        User.findById(element.userid, (err, data) => { //TODO: get an array of objects, each one with the messages, username, date and images, and emit it to the client;
+                            if (err) return console.log(err);
+                            messagesArray.push({
+                                username: data.username,
+                                image: data.image,
+                                message: element.message,
+                                date: element.date
+                            });
+                        });
+                    });
+                    console.log(messagesArray);
+                    socket.emit('online', messagesArray);
+                    console.log(connectedUsers);
+                });
             });
+            
         });
 
         socket.on('submitChatMessage', (token, date, message) => {
             jwt.verify(token, 'aHKrColYbxT1Dg5mbtv42KKVU5lju6t0TopW8-E3Q-0', (err, decoded) => {
                 if (err) return console.log(err);
                 User.findById(decoded._id, (err, userData) =>  {
-                    db.collection('messages').insertOne(new Message({userid: decoded._id, username: userData.username, date: new Date(date), message: message}));
+                    db.collection('messages').insertOne(new Message({userid: decoded._id, date: new Date(date), message: message}));
                     if (err) return console.log(err);
-                    io.sockets.emit('receiveChatMessage', userData.username, date, message);
+                    io.sockets.emit('receiveChatMessage', userData.username, date, message, userData.image);
                 });
             });
         });
@@ -51,7 +69,7 @@ function ioServer(io) {
             console.log(connectedUsers[socket.id]);
             delete connectedUsers[socket.id];
             console.log(connectedUsers);
-        })
+        });
     });
 }
 
