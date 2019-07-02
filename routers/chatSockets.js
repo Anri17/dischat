@@ -49,11 +49,15 @@ function ioServer(io) {
         });
 
         socket.on('disconnect', () => {
-            console.log("disconnected");
+            console.log("a user has disconnected");
             io.sockets.emit('userDisconnected', connectedUsers[socket.id]);
             console.log(connectedUsers[socket.id]);
             delete connectedUsers[socket.id];
             console.log(connectedUsers);
+        });
+
+        socket.on('deleteMessages', () => {
+            Message.deleteMany({}, ()=> {console.log('DEBUG: messages deleted');});
         });
     });
 }

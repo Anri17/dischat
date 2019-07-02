@@ -25,11 +25,11 @@
                 <span id="header_user_profile_username">User</span>
             </div>
             <div style="display: none" id="user_profile" class="user-profile">
-                <form id="user_profile_image_upload_form" class="user-profile-image-upload-form">
-                    <input id="profile_image_file" type="file" name="image" accept="image/png, image/jpg">
-                    <input type="submit" value="upload">
+                <label for="profile_image_file" class="user-profile-image-upload btn btn-sm">Change Profile Picture...</label>
+                <input class="input-file" id="profile_image_file" type="file" name="image" accept="image/png, image/jpg, image/jpeg" value="change profile pic">
                 </form>
-                <button id="logout_button" class="btn btn-sm">Logout</button>
+                <button id="logout_button" class="logout-button btn btn-sm">Logout</button>
+                <button id="admin_delete_messages" class="logout-button btn btn-sm">ADMIN_DELETE_MESSAGES</button>
             </div>
         </div>
     </header>

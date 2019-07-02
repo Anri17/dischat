@@ -38,7 +38,6 @@ function createMessageStructure(username, date, message, imageURL) {
 
     messageUsername.innerHTML = username;
     messageTime.innerHTML = newDate.getHours() + ":" + newDate.getMinutes() + "   " + newDate.getDay() + "/" + newDate.getMonth() + "/" + newDate.getFullYear();
-    console.log('finished adding');
 }
 
 function buildSidebarProfileCard(id, username, imageURL) {

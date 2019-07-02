@@ -6,7 +6,6 @@ const submitForm = document.getElementById('message_submition_form');
 socket.emit('newUserLogin', localStorage.token);
 
 socket.on('online', (message) => {
-    console.log(message);
     message.forEach(element => {
         createMessageStructure(element.user.username, element.date, element.message, element.user.image);
     });
@@ -46,4 +45,12 @@ socket.on('disconnect', () => {
 socket.on('userDisconnected', (disconnectId) => {
     console.log(disconnectId + " has disconnected");
     displayOfflineStatus(disconnectId);
+});
+
+// ADMIN CODE
+const admin_delete_messages = document.getElementById('admin_delete_messages');
+
+admin_delete_messages.addEventListener('click', () => {
+    socket.emit('deleteMessages');
+    console.log('DEBUG: messages deleted');
 });

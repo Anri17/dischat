@@ -3,29 +3,27 @@ let header_user_profile = document.getElementById('header_user_profile');
 let user_profile = document.getElementById('user_profile');
 let header_user_profile_username = document.getElementById('header_user_profile_username');
 let header_user_profile_image = document.getElementById('header_user_profile_image');
-let user_profile_image_upload_form = document.getElementById('user_profile_image_upload_form');
+let profile_image_file = document.getElementById('profile_image_file');
 
 logout_button.addEventListener('click', logoutUser);
 
 header_user_profile.addEventListener('click', () => {
     if (user_profile.style.display == 'none') {
-        user_profile.style.display = 'block';
-        header_user_profile.style.backgroundColor = '#323542';
+        user_profile.style.display = 'flex';
     } else {
         user_profile.style.display = 'none';
-        header_user_profile.style.backgroundColor = '#272735';
     }
 });
 
 header_user_profile.addEventListener('mouseenter', () => {
     if (user_profile.style.display == 'none') {
-        header_user_profile.style.backgroundColor = '#272735';
+        header_user_profile.style.backgroundColor = 'var(--color-0)';
     }
 });
 
 header_user_profile.addEventListener('mouseleave', () => {
     if (user_profile.style.display == 'none') {
-        header_user_profile.style.backgroundColor = '#16161f';
+        header_user_profile.style.backgroundColor = 'var(--color-2)';
     }
 });
 
@@ -41,20 +39,24 @@ window.onload = fetchThisUserData(localStorage.token, (userData) => {
     });
 });
 
-user_profile_image_upload_form.addEventListener('submit', (e) => {
+profile_image_file.addEventListener('change', (e) => {
     e.preventDefault();
     let formData = new FormData();
     let profile_image_file = document.getElementById('profile_image_file');
 
     formData.append('token', localStorage.token);
-    formData.append('image', profile_image_file.files[0]);
+    if (profile_image_file.files[0] == null || profile_image_file.files[0] == undefined) {
+        return console.log('pls insert an image');
+    } else {
+        formData.append('image', profile_image_file.files[0]);
+    }
     
     fetch('/userProfileImage', {
             method: 'POST',
             body: formData
         })
         .then(response => response.json())
-        .then(response => console.log('success: ', response));
+        .then(response => reload());
 });
 
 var newScript = document.createElement('script');
