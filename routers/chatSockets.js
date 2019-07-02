@@ -29,24 +29,9 @@ function ioServer(io) {
                 }
                 connectedUsers[socket.id] = decoded._id;
                 io.sockets.emit('newUserLoginAnouncement', connectedUsers);
-                Message.find((err, messages) => {
-                    if (err) return console.log(err);
-                    let messagesArray = [];
-                    messages.forEach(element => {
-                        console.log(element);
-                        User.findById(element.userid, (err, data) => { //TODO: get an array of objects, each one with the messages, username, date and images, and emit it to the client;
-                            if (err) return console.log(err);
-                            messagesArray.push({
-                                username: data.username,
-                                image: data.image,
-                                message: element.message,
-                                date: element.date
-                            });
-                        });
-                    });
-                    console.log(messagesArray);
-                    socket.emit('online', messagesArray);
-                    console.log(connectedUsers);
+                Message.find().populate('user').sort({ date:1 }).exec((err, messages) => {
+                    if (err) return console.log(new Error(err));
+                    socket.emit('online', messages);;
                 });
             });
             
@@ -56,7 +41,7 @@ function ioServer(io) {
             jwt.verify(token, 'aHKrColYbxT1Dg5mbtv42KKVU5lju6t0TopW8-E3Q-0', (err, decoded) => {
                 if (err) return console.log(err);
                 User.findById(decoded._id, (err, userData) =>  {
-                    db.collection('messages').insertOne(new Message({userid: decoded._id, date: new Date(date), message: message}));
+                    db.collection('messages').insertOne(new Message({user: decoded._id, date: new Date(date), message: message}));
                     if (err) return console.log(err);
                     io.sockets.emit('receiveChatMessage', userData.username, date, message, userData.image);
                 });

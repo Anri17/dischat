@@ -6,9 +6,29 @@ let header_user_profile_image = document.getElementById('header_user_profile_ima
 let user_profile_image_upload_form = document.getElementById('user_profile_image_upload_form');
 
 logout_button.addEventListener('click', logoutUser);
-header_user_profile.onclick = () => {
-    user_profile.style.display == 'none' ? user_profile.style.display = 'block' : user_profile.style.display = 'none';
-};
+
+header_user_profile.addEventListener('click', () => {
+    if (user_profile.style.display == 'none') {
+        user_profile.style.display = 'block';
+        header_user_profile.style.backgroundColor = '#323542';
+    } else {
+        user_profile.style.display = 'none';
+        header_user_profile.style.backgroundColor = '#272735';
+    }
+});
+
+header_user_profile.addEventListener('mouseenter', () => {
+    if (user_profile.style.display == 'none') {
+        header_user_profile.style.backgroundColor = '#272735';
+    }
+});
+
+header_user_profile.addEventListener('mouseleave', () => {
+    if (user_profile.style.display == 'none') {
+        header_user_profile.style.backgroundColor = '#16161f';
+    }
+});
+
 
 window.onload = fetchThisUserData(localStorage.token, (userData) => {
     header_user_profile_username.innerHTML = userData.username;

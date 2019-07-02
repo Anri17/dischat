@@ -5,18 +5,16 @@ const submitForm = document.getElementById('message_submition_form');
 // Login Handling
 socket.emit('newUserLogin', localStorage.token);
 
-socket.on('online', (messages) => {
-    sortArr(messages, (sortedMessages) => {
-        sortedMessages.forEach(element => {
-            createMessageStructure(element.username, element.date, element.message, element.image);
-        });
+socket.on('online', (message) => {
+    console.log(message);
+    message.forEach(element => {
+        createMessageStructure(element.user.username, element.date, element.message, element.user.image);
     });
-})
+});
 
 socket.on('newUserLoginAnouncement', (userList) => {
     setTimeout(() => {
         for (let key in userList) {
-            console.log(userList[key]);
             displayOnlineStatus(userList[key]);
         }
         scrollDivToBottom('chat_messages');

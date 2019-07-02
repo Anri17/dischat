@@ -113,7 +113,21 @@ p {
 .header-user-profile {
     display: flex;
     align-content: center;
-    margin: 1rem;
+    width: 160px;
+    margin: 0.8rem;
+    padding: 0.4rem;
+    border-top-left-radius: 0.2rem;
+    border-top-right-radius: 0.2rem;
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer */
+    -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+    -webkit-user-select: none; /* Chrome, Safari, and Opera */
+    -webkit-touch-callout: none;
+    background-color: #16161f;
+}
+
+.header-user-profile:hover {
+    cursor: pointer;
 }
 
 .header-user-profile img {
@@ -128,9 +142,9 @@ p {
     color: #fff;
     display: flex;
     align-self: center;
-    margin-left: 0.5rem;
-    font-size: 1rem;
-    font-size: 600;
+    margin-left: 0.8rem;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .header-user button{
@@ -140,14 +154,14 @@ p {
 .user-profile {
     display: block;
     position: absolute;
-    background-color: #3f3f9b;
-    padding: 1rem;
-    border-top-left-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+    background-color: #323542;
+    padding: 0.4rem;
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
     margin: 0.5rem;
-    top: 70px;
-    right: 200px;
+    top: 66px;
+    right: 21px;
 }
 
 /* Chat */
@@ -172,9 +186,9 @@ p {
 
 .chat-submition {
     background-color: #1d1f25;
-    border-radius: 0.5rem;
+    border-radius: 0.3rem;
     margin: 0 auto;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     width: 98%;
     display: flex;
     flex-direction: row;
@@ -192,11 +206,12 @@ p {
     align-self: center;
     color: #fff;
     outline: none;
-    font-size: 1.2rem;
+    font-size: 15px;
     border: none;
-    border-bottom: solid 1px #323542;
+    border-left: solid 1px #323542;
     background-color: #1d1f25;
-    margin: 0.5rem;
+    padding: 0.3rem;
+    margin: 0.1rem 0.3rem;
 }
 
 /* messages */
@@ -235,8 +250,8 @@ p {
 
 .message-username { 
     align-self: flex-end;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 500;
     margin-right: 0.5rem;
 }
 
@@ -246,7 +261,7 @@ p {
 }
 
 .message-content {
-    font-size: 0.9rem;
+    font-size: 15px;
     line-height: 1.25rem;
 }
 
@@ -265,9 +280,16 @@ p {
 .user {
     display: flex;
     align-content: center;
-    margin: 1rem;
+    margin: 0.5rem 1rem;
     opacity: 0.4;
+    padding: 0.3rem;
+    border-radius: 0.2rem;
     filter: alpha(opacity = 40);
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer */
+    -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+    -webkit-user-select: none; /* Chrome, Safari, and Opera */
+    -webkit-touch-callout: none;
 }
 
 .user img {
@@ -282,9 +304,9 @@ p {
     color: #fff;
     display: flex;
     align-self: center;
-    margin-left: 0.5rem;
-    font-size: 1rem;
-    font-size: 600;
+    margin-left: 0.8rem;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 /* Footer */
@@ -314,7 +336,8 @@ p {
 }
 
 .btn {
-    background-color: #323542;
+    outline: none;
+    background-color: #464c57;
     color: #fff;
     font-weight: 600;
     font-size: 1.5rem;
@@ -329,10 +352,9 @@ p {
 }
 
 .btn-sm {
-    font-size: 1rem;
-    width: 100px;
-    height: 2rem;
-    padding: 0.5rem;
+    font-size: 0.9rem;
+    width: 80px;
+    padding: 0.4rem;
 }
 
 .btn:hover {
@@ -341,7 +363,7 @@ p {
 }
 
 .btn:active {
-    background-color: #16161f;
+    background-color: #1d1f25;
     color: #c7c7c7;
 }
 
