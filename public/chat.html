@@ -13,64 +13,71 @@
     </script>
 </head>
 <body>
-    <header class="header-container">
-        <h1 class="header-logo">
-            <a href="/">
-                <img src="images/logo.png" alt="Dischat logo">
-            </a>
-        </h1>
-        <div class="header-user">
-            <div id="header_user_profile" class="header-user-profile">
-                <img id="header_user_profile_image" src="#" alt="user image">
-                <span id="header_user_profile_username">User</span>
-            </div>
-            <div style="display: none" id="user_profile" class="user-profile">
-                <label for="profile_image_file" class="user-profile-image-upload btn btn-sm">Change Profile Picture...</label>
-                <input class="input-file" id="profile_image_file" type="file" name="image" accept="image/png, image/jpg, image/jpeg" value="change profile pic">
-                </form>
-                <button id="logout_button" class="logout-button btn btn-sm">Logout</button>
-                <button id="admin_delete_messages" class="logout-button btn btn-sm">ADMIN_DELETE_MESSAGES</button>
-            </div>
-        </div>
-    </header>
-    <main class="main-container">
-        <aside id="user_list" class="user-list">
-            <!-- Users Go Here -->
-            <!-- Sidebar Profile Template
-            <div class="user">
-                <img src="img/users/profile-pic.png" alt="user image">
-                <span>User</span>
-            </div>
-            -->
-        </aside>
-        <section class="chat-main">
-            <div id="chat_messages" class="chat-messages">
-                <!-- Chat Messages Go Here -->
-                <!-- Message Template
-                <div class="message">
-                    <div class="message-left">
-                        <img src="img/users/profile-pic.png" alt="user image">
-                    </div>
-                    <div class="message-right">
-                        <div class="message-header">
-                            <span class="message-username">username</span>
-                            <span class="message-time">mm:hh DD/MM/YYYY</span>
-                        </div>
-                        <span class="message-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium distinctio, explicabo enim facere dolores dicta labore molestias ipsa debitis repudiandae? Iure corrupti voluptas incidunt assumenda. Earum architecto nam reprehenderit explicabo. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum beatae quia vel unde laudantium a, perferendis modi rem magnam? Pariatur voluptatum ad maiores ullam, asperiores laborum ut consequatur sint? Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, libero facere fugiat illo optio ex fugit eum, quod provident eius aspernatur? Debitis, neque! Iste, excepturi facilis ab eveniet ex delectus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, maiores ea! Pariatur aliquam, dicta eius eum eos asperiores esse in, labore repellat natus, cum officiis possimus. Cum veritatis obcaecati nostrum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, assumenda est optio omnis facilis corporis nihil sequi repellat quod itaque earum eius, vitae quibusdam voluptates illo neque officiis dolore harum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni illum eius dicta et incidunt? Quia tempore nihil cupiditate quidem dolorem facilis eveniet assumenda quisquam alias beatae eligendi, molestiae modi hic? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sit ea quia. Deserunt, repellendus? Temporibus soluta repellendus ipsum itaque. Earum saepe, tempore perferendis eaque quis quisquam deleniti? Adipisci, excepturi architecto? Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sit, odio eveniet illo architecto facere. Nam nulla, laudantium, architecto rerum, voluptate unde ullam vitae minima doloribus adipisci cumque mollitia. Inventore? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis illo suscipit nisi possimus rem incidunt modi molestiae maiores aliquam assumenda, dolore ex dicta velit fugiat saepe perspiciatis eaque a iure!</span>
-                    </div>
+    <div class="container">
+        <header class="header-container">
+            <h1 class="header-logo">
+                <a href="/">
+                    <img src="images/logo.png" alt="Dischat logo">
+                </a>
+            </h1>
+            <div class="header-user">
+                <div id="header_user_profile" class="header-user-profile">
+                    <img id="header_user_profile_image" src="#" alt="user image">
+                    <span id="header_user_profile_username">User</span>
                 </div>
-                -->
+                <div style="display: none" id="user_profile" class="user-profile">
+                    <label for="profile_image_file" class="user-profile-image-upload btn btn-sm">Change Profile Picture...</label>
+                    <input class="input-file" id="profile_image_file" type="file" name="image" accept="image/png, image/jpg, image/jpeg" value="change profile pic">
+                    </form>
+                    <button id="logout_button" class="logout-button btn btn-sm">Logout</button>
+                    <button id="admin_delete_messages" class="logout-button btn btn-sm">DEBUG: Delete Messages</button>
+                </div>
             </div>
-            <div class="chat-submition">
-                <form id="message_submition_form" class="chat-submition-form">
-                    <input type="text" placeholder="Message" name="text-message">
-                </form>
-            </div>
-        </section>
-    </main>
-    <footer class="footer-container">
-        &copy; Este chato
-    </footer>
+        </header>
+        <main class="main-container">
+            <aside class="aside">
+                <div id="user_list" class="user-list">
+                    <!-- Users Go Here -->
+                    <!-- Sidebar Profile Template
+                    <div class="user">
+                        <img src="img/users/profile-pic.png" alt="user image">
+                        <span>User</span>
+                    </div>
+                    -->
+                </div>
+                <footer class="aside-footer">
+                    &copy; Este chato
+                </footer>
+            </aside>
+            <section class="chat-main">
+                <div id="chat_messages" class="chat-messages">
+                    <!-- Chat Messages Go Here -->
+                    <!-- Message Template
+                    <div class="message">
+                        <div class="message-left">
+                            <img src="img/users/profile-pic.png" alt="user image">
+                        </div>
+                        <div class="message-right">
+                            <div class="message-header">
+                                <span class="message-username">username</span>
+                                <span class="message-time">mm:hh DD/MM/YYYY</span>
+                            </div>
+                            <span class="message-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium distinctio, explicabo enim facere dolores dicta labore molestias ipsa debitis repudiandae? Iure corrupti voluptas incidunt assumenda. Earum architecto nam reprehenderit explicabo. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum beatae quia vel unde laudantium a, perferendis modi rem magnam? Pariatur voluptatum ad maiores ullam, asperiores laborum ut consequatur sint? Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, libero facere fugiat illo optio ex fugit eum, quod provident eius aspernatur? Debitis, neque! Iste, excepturi facilis ab eveniet ex delectus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, maiores ea! Pariatur aliquam, dicta eius eum eos asperiores esse in, labore repellat natus, cum officiis possimus. Cum veritatis obcaecati nostrum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, assumenda est optio omnis facilis corporis nihil sequi repellat quod itaque earum eius, vitae quibusdam voluptates illo neque officiis dolore harum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni illum eius dicta et incidunt? Quia tempore nihil cupiditate quidem dolorem facilis eveniet assumenda quisquam alias beatae eligendi, molestiae modi hic? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sit ea quia. Deserunt, repellendus? Temporibus soluta repellendus ipsum itaque. Earum saepe, tempore perferendis eaque quis quisquam deleniti? Adipisci, excepturi architecto? Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sit, odio eveniet illo architecto facere. Nam nulla, laudantium, architecto rerum, voluptate unde ullam vitae minima doloribus adipisci cumque mollitia. Inventore? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis illo suscipit nisi possimus rem incidunt modi molestiae maiores aliquam assumenda, dolore ex dicta velit fugiat saepe perspiciatis eaque a iure!</span>
+                        </div>
+                    </div>
+                    -->
+                </div>
+                <div class="chat-submition">
+                    <form id="message_submition_form" class="chat-submition-form">
+                        <textarea id="message_submition_form_content" type="text" placeholder="Message" name="text-message"></textarea>
+                    </form>
+                </div>
+            </section>
+        </main>
+        <!--footer class="footer-container">
+            &copy; Este chato
+        </footer-->
+    </div>
     <script src="socket.io/socket.io.js"></script>
     <script src="js/chatMethods.js"></script>
     <script src="js/userData.js"></script>

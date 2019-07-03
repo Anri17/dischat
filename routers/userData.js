@@ -1,6 +1,7 @@
 const express = require('express'); 
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const tokenConfig = require('./../config/tokenConfig.js');
 
 const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -15,7 +16,7 @@ const User = require('../models/user.js').User;
 
 router.post('/thisuserdata', (req, res) => {
     console.log(req.body.token);
-    jwt.verify(req.body.token, 'aHKrColYbxT1Dg5mbtv42KKVU5lju6t0TopW8-E3Q-0', (err, decoded) => {
+    jwt.verify(req.body.token, tokenConfig.secret, (err, decoded) => {
         if (err) return console.log(err);
         return User.findById(decoded._id, (err, userData) => {
             if (err) return console.log(err);

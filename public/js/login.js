@@ -26,7 +26,11 @@ function submitData(email, password) {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log(response.headers);
+        console.log('My JWT: ' + response.headers.get('jwt'));
+        return response.json();
+    })
     .then(response => {
         if (response == 'empty email') {
             displayAlert('Email field is empty');
@@ -37,6 +41,7 @@ function submitData(email, password) {
         } else if (response == 'no user') {
             displayAlert('No user found');
         } else if (response.token != null || response.token != undefined) {
+            console.log(response);
             localStorage.setItem("token", response.token);
             window.location.replace('/chat');
         }

@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 const registerRouter = require('./routers/register.js').router;
 const loginRouter = require('./routers/login.js').router;
@@ -10,12 +10,12 @@ const chatMessagesRouter = require('./routers/chatMessages.js').router;
 const chatSocketsRouter = require('./routers/chatSockets.js').router;
 const chatIoServer = require('./routers/chatSockets.js').ioServer;
 const userProfileRouter = require('./routers/userProfile.js').router;
-
+const tokenValidation = require('./middleware/tokenValidation.js');
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use('/login', express.static(path.join(__dirname, 'public', 'login.html')));
 app.use('/register', express.static(path.join(__dirname, 'public', 'register.html')));
-app.use('/chat', express.static(path.join(__dirname, 'public', 'chat.html')));
+app.use('/chat', /*tokenValidation.checkToken,*/ express.static(path.join(__dirname, 'public', 'chat.html')));
 
 app.use(registerRouter);
 app.use(loginRouter);

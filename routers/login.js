@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const tokenConfig = require('./../config/tokenConfig.js');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -29,9 +30,10 @@ router.post('/login-user', (req, res) => {
             if (passwordIsEqual) {
                 let token = jwt.sign({
                     _id: doc._id,
-                }, 'aHKrColYbxT1Dg5mbtv42KKVU5lju6t0TopW8-E3Q-0');
+                }, tokenConfig.secret);
                 res.json({
-                    token: token
+                    success: true,
+                    token: token    // TODO: TOKEN VALIDATION WITHIN SERVER
                 });
             };
         });

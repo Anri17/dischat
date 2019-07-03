@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const jwt = require('jsonwebtoken');
+const tokenConfig = require('./../config/tokenConfig.js');
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/dischat', {useNewUrlParser: true});
@@ -19,7 +20,7 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         // console.log(file);
         console.log(req.body);
-        jwt.verify(req.body.token, 'aHKrColYbxT1Dg5mbtv42KKVU5lju6t0TopW8-E3Q-0', (err, decoded) => {
+        jwt.verify(req.body.token, tokenConfig.secret, (err, decoded) => {
             cb(null, decoded._id + '.' + mime.extension(file.mimetype));
         })
     }
@@ -28,7 +29,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post('/userProfileImage', upload.single('image'), (req, res) => {
-    jwt.verify(req.body.token, 'aHKrColYbxT1Dg5mbtv42KKVU5lju6t0TopW8-E3Q-0', (err, decoded) => {
+    jwt.verify(req.body.token, tokenConfig.secret, (err, decoded) => {
         if (err) return console.log(new Error(err));
         User.findById(decoded._id, (err, userData) => {
             if (err) return console.log(new Error(err));
