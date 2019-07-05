@@ -10,12 +10,11 @@ const chatMessagesRouter = require('./routers/chatMessages.js').router;
 const chatSocketsRouter = require('./routers/chatSockets.js').router;
 const chatIoServer = require('./routers/chatSockets.js').ioServer;
 const userProfileRouter = require('./routers/userProfile.js').router;
-const tokenValidation = require('./middleware/tokenValidation.js');
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use('/login', express.static(path.join(__dirname, 'public', 'login.html')));
 app.use('/register', express.static(path.join(__dirname, 'public', 'register.html')));
-app.use('/chat', /*tokenValidation.checkToken,*/ express.static(path.join(__dirname, 'public', 'chat.html')));
+app.use('/chat', express.static(path.join(__dirname, 'public', 'chat.html')));
 
 app.use(registerRouter);
 app.use(loginRouter);
