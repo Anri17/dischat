@@ -1,6 +1,6 @@
 # Dischat [Português/Portuguese] (english version below)
 
-Esta aplicação foi dentro do contexto de estágio. O objetivo foi criar uma aplicação de chat em que o utilizador pudesse registar um username, um email uma password, guardasse as mesmas numa base de dados e deixasse o utilizador fazer login com o seu email e password. De seguida ele seria redirecionado à pagina com o chat, consistindo de um formulario de texto e uma div com todas as mensagens, e a lista de utilizadoes onlines e offline. As mensages seriam enviadas e atualizadas em tempo real para todos online, e guardadas na base de dados para serem carregados para os ulizadores que fizessem login entretanto. 
+Esta aplicação foi criada dentro do contexto de estágio. O objetivo foi criar uma aplicação de chat em que o utilizador pudesse registar um username, um email uma password, guardasse as mesmas numa base de dados e deixasse o utilizador fazer login com o seu email e password. De seguida ele seria redirecionado à pagina com o chat, consistindo de um formulario de texto e uma div com todas as mensagens, e a lista de utilizadoes onlines e offline. As mensages seriam enviadas e atualizadas em tempo real para todos online, e guardadas na base de dados para serem carregados para os ulizadores que fizessem login entretanto. 
 
 ## Como executar a aplicação
 1. instale o node.js em https://nodejs.org/en/ (Instale a versão recomendada. Deverá de ser o botão do lado esquerdo)
