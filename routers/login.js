@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
@@ -9,7 +9,7 @@ const tokenConfig = require('./../config/tokenConfig.js');
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost:27017/dischat', {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/dischat', {useNewUrlParser: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
