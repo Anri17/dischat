@@ -18,7 +18,10 @@ const User = require('../models/user.js').User;
 router.post('/thisuserdata', (req, res) => {
     console.log(req.body.token);
     jwt.verify(req.body.token, tokenConfig.secret, (err, decoded) => {
-        if (err) return console.log(err);
+        if (err) {
+            res.json('invalid token');
+            return console.log(err);
+        }
         if (decoded._id == null || decoded._id == undefined || decoded._id == '') res.json('invalid token')
         return User.findById(decoded._id, (err, userData) => {
             if (err) return console.log(err);
