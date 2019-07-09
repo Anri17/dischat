@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 
 const registerRouter = require('./routers/register.js').router;
 const loginRouter = require('./routers/login.js').router;
@@ -24,8 +24,8 @@ app.use(chatMessagesRouter);
 app.use(chatSocketsRouter);
 app.use(userProfileRouter);
 
-const server = app.listen(port, () => {
-    console.log(`Server running on port ${port}!`);
+const server = app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}!`);
 });
 
 const io = require('socket.io')(server);
