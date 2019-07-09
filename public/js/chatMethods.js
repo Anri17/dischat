@@ -97,10 +97,6 @@ function fetchThisUserData(token, callback) {
     })
     .then(response => response.json())
     .then(response => {
-        if (response = 'invalid token') {
-            localStorage.token = '';
-            return window.location.replace('/');
-        }
         return callback(response);
     });
 }
