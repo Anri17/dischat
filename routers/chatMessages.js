@@ -6,7 +6,8 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/dischat', {useNewUrlParser: true});
+const CONNECTION_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/dischat';
+mongoose.connect(CONNECTION_URI, {useNewUrlParser: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
