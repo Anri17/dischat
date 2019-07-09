@@ -52,4 +52,3 @@ function displayAlert(message) {
     alertbox.style.display = 'flex';
     alertbox.innerHTML = message;
 }
-
