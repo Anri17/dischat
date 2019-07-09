@@ -23,7 +23,6 @@ function ioServer(io) {
         socket.on('newUserLogin', (userLoginToken) => {
             jwt.verify(userLoginToken, tokenConfig.secret, (err, decoded) => {
                 if (err) return console.log(err);
-                console.log(decoded._id + ' connected');
                 for (const value of Object.values(connectedUsers)) {
                     if (decoded._id == value) {
                         return console.log('User already logged in');
