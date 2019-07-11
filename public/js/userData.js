@@ -59,8 +59,6 @@ profile_image_file.addEventListener('change', (e) => {
         .then(response => reload());
 });
 
-if(document.getElementsByTagName('img').src == null) document.getElementsByTagName('img').src = 'images/users/profile/default.png';
-
 var newScript = document.createElement('script');
 newScript.type = 'text/javascript';
 newScript.src = '/js/chatSockets.js';
