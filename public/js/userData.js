@@ -30,7 +30,7 @@ header_user_profile.addEventListener('mouseleave', () => {
 
 window.onload = fetchThisUserData(localStorage.token, (userData) => {
     header_user_profile_username.innerHTML = userData.username;
-    header_user_profile_image.src = userData.image || 'images/users/profile/default.png';
+    header_user_profile_image.src = userData.image;
 
     fetchAllUserData((allUserData) => {
         allUserData.forEach(element => {
@@ -58,6 +58,8 @@ profile_image_file.addEventListener('change', (e) => {
         .then(response => response.json())
         .then(response => reload());
 });
+
+if(document.getElementsByTagName('img').src == null) document.getElementsByTagName('img').src = 'images/users/profile/default.png';
 
 var newScript = document.createElement('script');
 newScript.type = 'text/javascript';
