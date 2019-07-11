@@ -30,7 +30,7 @@ header_user_profile.addEventListener('mouseleave', () => {
 
 window.onload = fetchThisUserData(localStorage.token, (userData) => {
     header_user_profile_username.innerHTML = userData.username;
-    header_user_profile_image.src = userData.image;
+    header_user_profile_image.src = userData.image || 'images/users/profile/default.png';
 
     fetchAllUserData((allUserData) => {
         allUserData.forEach(element => {
